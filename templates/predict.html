@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Hotel Room Price Prediction</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+
+<div class="container">
+    <h1>🏨 Hotel Room Price </h1>
+    <p class="subtitle">Enter Essential Booking Details</p>
+
+    <form method="POST" class="form-grid">
+
+        <div class="form-group">
+            <label>Hotel Type</label>
+            <select name="hotel" required>
+                <option value="City Hotel">City Hotel</option>
+                <option value="Resort Hotel">Resort Hotel</option>
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label>Advance Booking Days</label>
+            <input type="number" name="lead_time" placeholder="Ex: 30" required>
+        </div>
+
+        <div class="form-group">
+            <label>Adults</label>
+            <input type="number" name="adults" value="2" required>
+        </div>
+
+        <div class="form-group">
+            <label>Children</label>
+            <input type="number" name="children" value="0" required>
+        </div>
+
+        <div class="form-group">
+            <label>Meal Plan</label>
+            <select name="meal" required>
+                <option value="BB">BB - Bed & Breakfast</option>
+                <option value="HB">HB - Half Board</option>
+                <option value="FB">FB - Full Board</option>
+                <option value="SC">SC - Self Catering</option>
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label>Room Type</label>
+            <select name="reserved_room_type" required>
+                <option value="A">Room Type A</option>
+                <option value="B">Room Type B</option>
+                <option value="C">Room Type C</option>
+                <option value="D">Room Type D</option>
+                <option value="E">Room Type E</option>
+            </select>
+        </div>
+
+        <input type="hidden" name="arrival_date_year" value="2024">
+        <input type="hidden" name="arrival_date_month" value="July">
+        <input type="hidden" name="arrival_date_day_of_month" value="15">
+        <input type="hidden" name="stays_in_weekend_nights" value="1">
+        <input type="hidden" name="stays_in_week_nights" value="2">
+        <input type="hidden" name="babies" value="0">
+        <input type="hidden" name="country" value="IND">
+        <input type="hidden" name="market_segment" value="Online TA">
+        <input type="hidden" name="customer_type" value="Transient">
+
+        <button type="submit" class="predict-btn">Predict Room Price</button>
+    </form>
+
+    {% if prediction %}
+        <div class="result">
+            Predicted Room Price: ₹ {{ prediction }}
+        </div>
+    {% endif %}
+</div>
+
+</body>
+</html>
